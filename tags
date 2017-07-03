@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BF	makefile	/^BF = bf$/;"	m
+BFFLAGS	makefile	/^BFFLAGS = -i on -p both -r on -w on$/;"	m
+BUILD	makefile	/^BUILD = $(shell date +"%g%m%d.%H%M%S")$/;"	m
+CC	makefile	/^CC = gcc$/;"	m
+CCCOLOR	makefile	/^CCCOLOR ?= always$/;"	m
+CCSHARED	makefile	/^CCSHARED = -shared -fPIC$/;"	m
+CFLAGS	makefile	/^CFLAGS = -Wall -Wextra -std=gnu99 -fdiagnostics-color=$(CCCOLOR)$/;"	m
+CPPFLAGS	makefile	/^CPPFLAGS = -DVERSION=$(VERSION) -DBUILD="\\"$(BUILD)\\"" -DDEBUG=$(DEBUG) -D$(D) -D_FORTIFY_SOURCE=$(FORTIFY)$/;"	m
+D	makefile	/^D ?= D_$/;"	m
+DEBUG	exN.h	106;"	d
+DEBUG	makefile	/^DEBUG ?= 1$/;"	m
+DEFSYM	makefile	/^DEFSYM = $(subst .,_,$(BUILD))$/;"	m
+FORTIFY	makefile	/^FORTIFY ?= 1$/;"	m
+IFDEBUG	exN.h	115;"	d
+LDLIBS	makefile	/^LDLIBS = -Wl,--defsym,BUILD_$(DEFSYM)=0 -lm -lpthread -lncurses -lcurl$/;"	m
+MAJOR	makefile	/^MAJOR ?= 0$/;"	m
+MINOR	makefile	/^MINOR ?= 1$/;"	m
+NDEBUG	exN.h	110;"	d
+OBJ	makefile	/^OBJ ?=$/;"	m
+PL	makefile	/^PL = swipl$/;"	m
+PLFLAGS	makefile	/^PLFLAGS = --goal=main --stand_alone=true$/;"	m
+PLLD	makefile	/^PLLD = swipl-ld$/;"	m
+PLLDSHARED	makefile	/^PLLDSHARED = -shared$/;"	m
+PT	makefile	/^PT = gpt$/;"	m
+SBUFF	exN.h	118;"	d
+SHELL	makefile	/^SHELL=\/bin\/bash -o pipefail$/;"	m
+SRC	makefile	/^SRC ?=$/;"	m
+VERSION	exN.h	101;"	d
+VERSION	makefile	/^VERSION = "\\"$(MAJOR).$(MINOR).$(BUILD)\\""$/;"	m
+_EXN_H	exN.h	62;"	d
+copyr	exN.c	/^void copyr(void)$/;"	f
+exN_init	exN.c	/^void exN_init(void)$/;"	f
+help	exN.c	/^void help(void)$/;"	f
+main	exN.c	/^int main(int argc, char *argv[])$/;"	f
+verb	exN.h	/^static int verb = 0; \/**< verbose level, global within the file *\/$/;"	v
