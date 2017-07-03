@@ -1,5 +1,5 @@
 #***************************************************************************
-#*   Autoversion makefile                     v.20170412.201109 (FORTIFY2) *
+#*   Autoversion makefile                     v.20170506.205016   (-O0%-s) *
 #*   Copyright (C) 2014-2017 by Ruben Carlo Benante <rcb@beco.cc>          *
 #*                                                                         *
 #*   This makefile sets BUILD and allows to set MAJOR.MINOR version,       *
@@ -111,6 +111,9 @@
 # 2017-03-18:
 # 		* added -lcurl to link with libcurl
 
+# disable builtin rules with MAKEFLAGS and .SUFFIXES
+MAKEFLAGS += --no-builtin-rules
+#.SUFFIXES:
 .PHONY: clean wipe nomatch
 .PRECIOUS: %.o
 SHELL=/bin/bash -o pipefail
@@ -132,13 +135,13 @@ PT = gpt
 PLLD = swipl-ld
 PL = swipl
 CFLAGS = -Wall -Wextra -std=gnu99 -fdiagnostics-color=$(CCCOLOR)
-#CFLAGS = -Wall -Wextra -g -Og -std=gnu99 -pg -fprofile-arcs -fdiagnostics-color=$(CCCOLOR)
+#CFLAGS = -Wall -Wextra -g -O0 -std=gnu99 -pg -fprofile-arcs -fdiagnostics-color=$(CCCOLOR)
 ifeq "$(DEBUG)" "0"
 CFLAGS += -Ofast
 else ifeq "$(DEBUG)" "1"
-CFLAGS += -g -Og
+CFLAGS += -g -O0
 else
-CFLAGS += -g -Og -pg -fprofile-arcs -ansi -Wpedantic
+CFLAGS += -g -O0 -pg -fprofile-arcs -ansi -Wpedantic
 endif
 #-pedantic-errors -Werror
 #-Ofast -c
@@ -152,20 +155,8 @@ BFFLAGS = -i on -p both -r on -w on
 PLLDSHARED = -shared
 PLFLAGS = --goal=main --stand_alone=true
 
-# Programa em C (incluindo bibliotecas como allegro ou libaspipo).
-# Inclui VERSION, data de BUILD e DEBUG (opcional).
-%.x : %.c $(OBJ) $(SRC)
-	-$(CC) $(CFLAGS) $(CPPFLAGS) $(LDLIBS) $^ -o $@ 2>&1 | tee errors.err
-ifeq "$(CCCOLOR)" "always"
-	@sed -i -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g" errors.err
-endif
-
-# Shared library
-%.so : %.c $(OBJ) $(SRC)
-	-$(CC) $(CCSHARED) $(CFLAGS) $(CPPFLAGS) $(LDLIBS) $^ -o $@ 2>&1 | tee errors.err
-ifeq "$(CCCOLOR)" "always"
-	@sed -i -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g" errors.err
-endif
+# prevent built-in rules for %.o
+%.o : %.c
 
 # Programa BrainForce.
 %.bf.x : %.bf
@@ -187,8 +178,30 @@ endif
 %.plc.so : %.c
 	$(PLLD) $(PLLDSHARED) $^ -o $@ 2>&1 | tee errors.err
 
-# prevent built-in rules for %.o
-%.o : %.c
+# Shared library
+%.so : %.c $(OBJ) $(SRC)
+	-$(CC) $(CCSHARED) $(CFLAGS) $(CPPFLAGS) $(LDLIBS) $^ -o $@ 2>&1 | tee errors.err
+ifeq "$(CCCOLOR)" "always"
+	@sed -i -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g" errors.err
+endif
+
+# Programa em C (incluindo bibliotecas como allegro ou libaspipo).
+# Inclui VERSION, data de BUILD e DEBUG (opcional).
+%.x : %.c $(OBJ) $(SRC)
+	-$(CC) $(CFLAGS) $(CPPFLAGS) $(LDLIBS) $^ -o $@ 2>&1 | tee errors.err
+ifeq "$(CCCOLOR)" "always"
+	@sed -i -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g" errors.err
+endif
+	-@[ ! -s errors.err ] && echo $@ version $(VERSION) > VERSION
+
+# override built-in rules for mathing everything (exactly the same rule as %.x above)
+% : %.c $(OBJ) $(SRC)
+	-$(CC) $(CFLAGS) $(CPPFLAGS) $(LDLIBS) $^ -o $@ 2>&1 | tee errors.err
+	@echo $@ version $(VERSION) > VERSION
+ifeq "$(CCCOLOR)" "always"
+	@sed -i -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g" errors.err
+endif
+	-@[ ! -s errors.err ] && echo $@ version $(VERSION) > VERSION
 
 nomatch :
 	@echo 'makefile error: no rules for the given goal(s)' $(warning nomatch)
@@ -222,6 +235,6 @@ tags :
 
 #* ------------------------------------------------------------------- *
 #* makefile config for Vim modeline                                    *
-#* vi: set ai noet ts=4 sw=4 tw=72 wm=0 fo=croqlt :                    *
-#* Template by Dr. Beco <rcb at beco dot cc> Version 20160614.152950   *
+#* vi: set ai noet ts=4 sw=4 tw=0 wm=0 fo=croqlt :                     *
+#* Template by Dr. Beco <rcb at beco dot cc> Version 20170506.191339   *
 
