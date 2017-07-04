@@ -1,0 +1,104 @@
+The original set was not delivered with a LICENSE file, 
+but we can read in two files the following:
+
+------------------------------------------------------------------------
+
+* README.DOC, by Chris Sherrick:
+
+DOCUMENTATION for Tradewars v.ii release 2.0.TW2.500T
+Tradewars v.ii by Chris Sherrick (c1986)
+200, 500 sector and Team versions by John Morris
+
+  *******************
+  *******************
+  *******************
+         *****
+         *****       *****               *****
+         *****       *****               *****
+         *****        *****             *****
+         *****        *****      *      *****
+         *****         *****    ***    *****        ************
+         *****          *****  *****  *****       ****************
+                         *****************      *******      *******
+                          ******   ******      ******         ******
+                           ****     ****                   ******
+                            **       **                 ******
+                                                     ******
+                                                  ******
+                                                *******
+                                               *********************
+                                               *********************
+************************************************************************
+* Tradewars v.ii is copyrighted by Chris Sherrick.  You are encouraged *
+* to distribute it freely to any and all bulletin boards. You may not  *
+* distribute Tradewars in modified form without the Authors consent.   *
+* Tradewars may not be sold comercially (in any way, shape or form)    *
+************************************************************************
+
+[... cut ...]
+
+    I am in the habit of distributing source code,  after all what would
+ RBBS-PC be without that? So I feel the Doorsoft games should be distributed
+ in the same manner. But, I prefer giving the source code out only to
+ sysop's to keep things under a certain amount of control. 
+
+[... cut ...]
+
+    You are also free to modify the source code, but Do NOT ditribute it 
+ in this modified manner!  If you come up with a some modifications that
+ you think are useful, make a BLED merge file and upload it to my system,
+ and I'll see about putting it in the next release of the game.
+
+[... cut ...]
+
+     You should make changes in the program, I ask that you don't change
+any of the program files when you distribute them.  Make it into another
+file and distribute it along with the program, but I ask that you keep
+the original programs intact.  This program is copyrighted.
+
+[... cut ...]
+
+     Now for the begging.  This game is distributed as "Shareware."  My
+attitude is that I'd rather have people having a good time playing the
+game than for me to get rich; but if you could, please send $20.00 to the
+address below:
+
+TW2
+c/o Chris Sherrick
+1515 Ridgeland Dr.
+Sparks, NV  89431
+
+If I get something, I'll try to write back, but I can't guarantee anything;
+I'm a busy college student.
+
+------------------------------------------------------------------------
+
+* DMERG.DOC, a utility added to TW2, by John Morris (The Reno RBBS 702-673-3387):
+
+[... cut ...]
+
+ The downloadable DoorMerge files are made to be compatible with 
+Nochange BBS programs. They can be easily modified for other uses.
+
+[... cut ...]
+
+P.S. Just thought I'd add..  'These programs aren't guaranteed (I'd
+like them to be but you know how that goes) and all that other jazz
+that usually goes in this kind of statement' ('as is' I think they
+call it)
+
+Also, These programs are distributed with a couple of restrictions:
+1: I prefer that only sysop's have this source code, and that you
+the sysop only accept this code from a known sysop (for security
+reasons) If there is any doubt just D/L the files from my BBS.
+2: Do Not distribute this code in modified form. If you have
+improvements to the code let me know and I may incorporate it.
+
+[... cut ...]
+
+1987-06-28: Check the New Tradewars Source code for more examples.
+
+------------------------------------------------------------------------
+
+If you want to read them, the above files are in this repository in their integrity.
+

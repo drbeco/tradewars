@@ -1,0 +1,340 @@
+
+
+
+DOCUMENTATION for Tradewars v.ii release 2.0.TW2.500T
+Tradewars v.ii by Chris Sherrick (c1986)
+200, 500 sector and Team versions by John Morris
+
+  *******************
+  *******************
+  *******************
+         *****
+         *****       *****               ***** 
+         *****       *****               *****
+         *****        *****             *****    
+         *****        *****      *      *****
+         *****         *****    ***    *****        ************
+         *****          *****  *****  *****       ****************
+                         *****************      *******      *******
+                          ******   ******      ******         ****** 
+                           ****     ****                   ******    
+                            **       **                 ******
+                                                     ****** 
+                                                  ******
+                                                *******
+                                               *********************
+                                               *********************
+************************************************************************
+* Tradewars v.ii is copyrighted by Chris Sherrick.  You are encouraged *
+* to distribute it freely to any and all bulletin boards. You may not  *
+* distribute Tradewars in modified form without the Authors consent.   *
+* Tradewars may not be sold comercially (in any way, shape or form)    *
+************************************************************************
+
+Because of the size of the files needed for Tradewars to run, they are
+distributed in two .ARC files:
+
+TW2B151B.ARC - contains Tradewars Source code & documentation.
+TW2E151B.ARC - contains Tradewars Executable files & documentation.
+
+TW2B151B.ARC contains the following files:
+------------------------------------------
+DMERG.DOC      - DoorMerge documentation on DMERGx.BAS
+DMERG1.BAS     - DoorMerge 1 Include file  init sequence  (used with TWEDIT)
+DMERG2.BAS     - DoorMerge 2 Include file  I/O subroutine (used with TWEDIT)
+TW2.BAS        - Tradewars v.ii main segment source
+TW2.DAT        - Data file used by TW2.EXE
+TW2COMP.BAT    - Batch file to compile TW2.BAS
+TW2SUB.BAS     - Tradewars v.ii separately compiled subroutines
+TWECOMP.BAT    - Batch file to compile TWEDIT.BAS
+TWEDIT.BAS     - Tradewars v.ii Editor source code
+TWICOMP.BAT    - Batch file to compile TWINIT2.BAS
+README.DOC     - This Doc file
+TWINT500.BAS   - Tradewars v.ii Init file source code (500 sector)
+TWINSTR.DOC    - Tradewars v.ii Player Instructions
+TWEDITOR.DOC   - Tradewars Editor SysOp documentation.
+TWMAP500.DOC   - 500 sector map
+TWMERG1.BAS    - Tradewars specific DMERG1 include file
+TWMERG2.BAS    - Tradewars specific DMERG2 include file 
+TWOPENC.DAT    - ANSI graphics opening screen
+TWOPENG.DAT    - TEXT opening screen
+TWVAR.BAS      - TW2 Include file
+
+TW2E151B.ARC contains the following files:
+------------------------------------------
+TW2.DAT        - Data file used by TW2.EXE
+TW2.EXE        - TW2 main executable file
+TWEDIT.EXE     - TWEDIT executable file
+TWINT500.EXE   - 500 sector init file
+TWINSTR.DOC    - Tradewars player instructions
+TWMAP500.DOC   - 500 sector SysOp map
+README.DOC     - This file
+TWEDITOR.DOC   - Tradewars Editor SysOp documentation.
+TWOPENC.DAT    - ANSI graphics opening screen
+TWOPENG.DAT    - TEXT opening screen
+
+
+
+*******************************************************************
+
+**The following is a list of files used by TW2 at run-time:
+-----------------------------------------------------------
+(These files MUST exist on the same drive/path as TW2)
+
+Program files:
+TW2     .EXE - Plays Trade Wars (v.ii). + the Trade Wars maintenance program
+               run once per day automatically in TW2
+TWEDIT  .EXE - The Trade Wars (v.ii) editor.
+TWINT500.EXE - 200 sector Initialization program for Trade Wars (v.ii).
+               Sets up TWDATA.DAT, TWMESG.DAT, TWPMSG.DAT, TWRMESG.DAT,
+               and TW2.DAT.
+
+Data files:
+TWDATA  .DAT - Most of the game data for Trade Wars (v.ii).
+TWMESG  .DAT - Contains info on messages to players.
+TWRMESG .DAT - Radio message data file.
+
+Text files:
+README  .DOC - This file
+TWEDITOR.DOC - Documentation for TWEDIT.EXE (the editor.)
+TWINSTR .DOC - The instructions for TW2.EXE (the game.)  This file is
+               used by TW2.  I also recommend putting this up for download
+               by the players.
+TWOPENG .DOC - The opening message.  You can change this to what ever
+               you want, but make sure it exists.
+TWOPENC .DAT - ANSI graphics opening message
+TWPMSG  .DAT - Messages to the TW Sysop.  Used by TWEDIT.
+
+[*END of file listing*]
+
+********************************************************************
+
+DoorSoft
+--------
+   Doorsoft games were written because I felt the users need Fun games,
+ that would keep them interested for long periods of time.  By time,
+ I mean months, not just an hour a day or so and then giving up after a
+ couple weeks, out of shear boredom, I mean an hour a day for months.
+ Many users seem to get tired of Adventure games if they cannot find a
+ solution after a couple or three weeks. What these games give is more
+ interaction, thus their time on the system is more enjoyable.
+
+    I am in the habit of  distributing source code,  after all what would
+ RBBS-PC be without that? So I feel the Doorsoft games should be distributed
+ in the same manner. But, I prefer giving the source code out only to
+ sysop's to keep things under a certain amount of control. Because the game
+ operate like a miniature BBS program, they do all the I/O to the remote/
+ local user.  Access to your DOS could only be obtained thru tampering
+ with the source code.  So if a local area user, or a user you don't know,
+ uploads a Doorsoft game, it would be to your advantage to check with my
+ system, or with any SysOp running Doorsoft games, to make sure you have
+ 'untampered copy' of the software. (However unlikely that will be)
+
+  Also by distributing source code, you have a window on the next version
+ of RBBS-PC at your finger-tips.  Just a simple modification here and there
+ and you are up and running again, without long hours of downloading, or
+ waiting for the postal service to come thru. (Downloading and the Postal
+ Service are still options though!)    You are also free to modify
+ the source code,  but Do NOT ditribute it in this modified manner!  If you
+ come up with a some modifications that you think are useful, make a BLED
+ merge file and upload it to my system, and I'll see about putting it in
+ the next release of the game.
+
+ Features of DoorSoft games  
+ (or.. if you will, Features of the DoorMerge Include files)
+ -----------------------------------------------------------
+
+ [SysOp Functions]
+
+ Three function keys are active in each Doorsoft game:
+
+F8  --  By pressing F8 you can adjust a users time allotment in that game.
+        It will not adjust the users time as far as the monitor is
+        concerned. You can force the user off-line in this manner by
+        adjusting his time down to a small amount.
+        A prompt will come up asking you the amount of time you wish the
+        user to have.  This prompt tells you the current amount of time
+        left.  If you change the time, the user will get a warning
+        notice, whether the time limit is less, or more.
+
+F9  --  By pressing F9 you will change the current state of 'SNOOP'. This
+        operates in the same manner as SNOOP in RBBS-PC, but will not
+        change the status of SNOOP of the RBBS.  F9 is the SNOOP key of
+        RBBS-PC and appropriately enough, it is the same in the door game.
+
+F10  -  By pressing F10 you will engage CHAT mode with the user. Just hit
+        ESC to get back to the game.
+
+
+ [Other Features]
+
+1. Games compiled with The DoorMerge files will also operate in RBBS-PC's
+   'Local Workstation Mode'!    Just run it like a normal game.  The 
+   DoorMerge files recognize 'COM0' in the RBBSxPC.DEF file, and act 
+   accordingly.
+
+2. Commands can be stacked. They work in a slightly different manner
+   than RBBS-PC stacked commands, and are extemely useful.
+
+   For instance in Tradewars 2, Instead of typing:
+
+   M [enter] (move)
+   wait for prompt....
+   174 [enter] (move to sector 174)
+   wait for prompt....
+   M [enter] (move)
+   wait for prompt....
+   176 [enter] (move to sector 176)
+
+   A user just needs to type:
+
+   M;174;M;176
+
+   at the first prompt, and the game will take care of the rest.
+   Of course this feature can be used in any Doorsoft game..
+
+3. Another Feature in Tradewars for the SysOp is the 'E' function.
+   Only the SysOp (either remote/local) has access to this function,
+   No one else has access to it.  The 'E' function allows the SysOp to
+   run the Tradwars 2 Editor from Tradewars.  From the Editor enter
+   'T' to return to Tradwars 2, or if in Local Mode, you can enter 'X'
+   to eXit to dos.
+
+   Doorsoft games do not have 'individual scoreboards' because the monitor
+   scoreboard is adequate enough. It also saves a users time on-line
+   (another complaint I always hear).
+
+[*END of Doorsoft specific info*]
+
+Getting started with TW2
+------------------------
+
+Notes TW2 by Chris Sherrick:
+----------------------------
+
+     I recommend using this game with a cache program.  Since this game
+was designed to survive if people hung up on it, it makes frequent use of
+the disks.  You will save your disk some usage if you're using a cache.
+
+     You should make changes in the program, I ask that you don't change
+any of the program files when you distribute them.  Make it into another
+file and distribute it along with the program, but I ask that you keep
+the original programs intact.  This program is copyrighted.
+
+     The reason I wrote this program is because I always wanted to play
+a good multi-player strategy game.  I'm too poor to afford a subscription
+to something on a national level (like Compuserve) so I never got to play
+those games.  One day I decided that since no one had a good multi-player,
+I'd write one.  Unfortunately I don't get to play the game (since I run
+it and I usually get accused of cheating - I'm a good player! - Someone
+please write another multi-player game so I can play it!)
+
+     Now for the begging.  This game is distributed as "Shareware."  My
+attitude is that I'd rather have people having a good time playing the
+game than for me to get rich; but if you could, please send $20.00 to the
+address below:
+
+TW2
+c/o Chris Sherrick
+1515 Ridgeland Dr.
+Sparks, NV  89431
+
+If I get something, I'll try to write back, but I can't guarantee anything;
+I'm a busy college student.
+
+     Rumor has it that there might be some new multi-player games coming.
+One idea is to make a multi-BBS game, where teams can be made.  If the
+BBS owners want to pay the long distance, you can gave a game stretching
+out over the country.  But, these ideas are on the "burner" because right
+now because I don't have a computer.  But there should be some more games
+out shortly after I get one, whenever that is.  But in the meanwhile, I'm
+keeping myself busy with the UCI micro-mouse competition - We're going
+for national championship!
+
+     That's all I have to say in this letter.  I hope you fully enjoy
+Trade Wars to you fullest.  The only problem with it is people tend to
+spend their time playing TW2 and not posting, but oh well, you can't have
+it all.
+
+P.S.  Call The Reno RBBS - Sysop John Morris / 702-673-3387
+     This BBS and sysop has been very helpful to me in play testing and
+modifying this version.  If it wasn't for John Morris, this game wouldn't
+be available for the RBBS's.  Also, he should have the latest and newest
+copies of this program.
+
+[Getting started - EXE files alone]
+-----------------------------------
+
+First unpack TW2E151B.ARC using PKXARC 3.5 (or greater).  Copy these files
+to your drive/path where you wish to put the game. For first time users,
+run TWINT500.EXE to initialize the game. This will create a 500 sector 
+galaxy, and several other files.
+ If you are using the monitor, add TW2 to your GAMES.DOR file, along with
+a desription (anything you like). Then just run the game from the monitor,
+like any other Door game.
+ If you aren't using the door monitor, add the name TWARS2 to your MENU5
+file, and create a batch file called TWARS2.BAT.  The contents of the 
+batch file are as follows (assuming you are using the pgm WATCHDOG):
+ 
+WATCHDGx OFF       (or whatever WATCHDG program you are using)
+TW2.EXE %1         (%1 signifies the node in use, it is passed on by RBBS)   
+
+and thats it.
+Now a user just needs to enter TWARS2 when asked for the door, and they
+are beamed over to the Tradewars galaxy.
+
+[Getting started - BAS files]
+
+  QuickBASIC 3.0 is REQUIRED to compile the latest Tradewars v.ii code.
+  Also:  The DTR patch is REQUIRED on BCOM30.LIB
+
+  Unpack the .BAS files in TW2B151B.ARC into your QB3 directory.
+3 batch files are included in the ARC file which will aid in your compiling
+Tradewars. They are:
+ 
+TW2COMP.BAT  -- this compiles TW2 into an EXE file
+TWECOMP.BAT  -- this compiles TWEDIT into an EXE file
+TWICOMP.BAT  -- this compiles TWINIT2 into an EXE file
+
+Once the Batch files have completed the compiling, unpack/move files into
+the correct drive/path as in the 'Getting started - EXE' section. Then
+follow the directions also in the 'Getting started - EXE' section.
+[NOTE] The Tradewars .EXE files that are in the .ARC files are compiled
+       then EXEPACKed before release, thus creating a much smaller .EXE
+       file  (appx. 20k difference)
+
+**************************************************************** 
+
+Having problems?
+
+  The biggest problem reported to me is the lack of the Tradewars opening
+messages.  Otherwise know as 'Error 53 at Line 5000'  Both TWOPENG.DAT
+*AND* TWOPENC.DAT must be on the same drive/path as TW2.EXE
+
+Other problems that creep up also are usually files missing. Make sure
+That all files listed above in the 'run-time list' are on the same
+drive/path as TW2.EXE.  Along with  MESSAGES, RBBSxPC.DEF.  If you
+seem to be missing TW2.DAT   here is some quick field info:
+
+BULLET10   *field 1:  filespec for Tradewars player Rankings
+5          *field 2:  minutes before logging off idle user
+1          *field 3:  using aliases?  1-yes 0-no.
+45         *field 4:  Time allowed in TW2, used when monitor isn't used
+
+The filespec in field one is usually a file used by the RBBS-PC, and should
+reside in the RBBS-PC's drive/path.  For instance , I display the Top Ten
+Tradewars rankings when a user enters my TW2 conference, so the filespec is
+TW2W.DEF (for TW2 conference opening message).
+
+More problems you say?
+ 
+Contact me here at The Reno RBBS:
+I'm very willing to help SysOps with Door problems. (any problems.. not
+just with my Doorsoft games.)  So give me a ring!
+ 
+John Morris
+The Reno RBBS
+702-673-3387
+
+
+

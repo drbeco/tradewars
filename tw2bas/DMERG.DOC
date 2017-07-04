@@ -1,0 +1,171 @@
+
+                     DoorMerge  Docs!
+                     ----------------
+
+
+ Hi there.  Well, I'm going to try and make this pretty short but
+hopefully understandable. I created the DoorMerge files to work with
+Chris Sherricks game  Tradewars v.ii. I started fully from scratch
+and ended up with what you see in the DoorMerge files. I admit that
+in some ways they aren't very pretty, but they do work. (I've never had
+a crash becuase of them) I'm adding to them all the time. And if you
+have any suggestions or additions let me know! 
+ The downloadable DoorMerge files are made to be compatible with 
+Nochange BBS programs. They can be easily modified for other uses.
+
+Each game program is compiled in the same manner:
+  
+NOTE: Tradewars is now compilable only with QuickBASIC 3.0
+
+Start by compiling the games:
+
+QB filename /W/X/C:512/O;    
+
+So, if you wanted to compile the game POKER  you would use:
+
+QB POKER /W/X/C:512/O;
+   
+Once you have the files POKER.OBJ and DSUB.OBJ you are ready to LINK
+them. Make sure GWCOM.OBJ is on your disk. Use this command:
+
+LINK POKER GWCOM;
+
+You should now have a working Door program!
+
+You can also use the file  DOORSOFT.BAT to automatically complile
+the programs. Use the command  DOORSOFT Doorname
+    ex:   DOORSOFT TW200     'for Tradewars 200
+
+Once again, if you have any improvements, suggestions or the like,
+let me know!
+
+John Morris
+The Reno RBBS
+702-673-3387
+
+
+P.S. Just thought I'd add..  'These programs aren't guaranteed (I'd
+like them to be but you know how that goes) and all that other jazz
+that usually goes in this kind of statement' ('as is' I think they 
+call it)
+Also, These programs are distributed with a couple of restrictions:
+1: I prefer that only sysop's have this source code, and that you
+the sysop only accept this code from a known sysop (for security 
+reasons) If there is any doubt just D/L the files from my BBS.
+2: Do Not distribute this code in modified form. If you have 
+improvements to the code let me know and I may incorporate it. 
+
+
+*----------------------------------------------------------*
+ How to interface your program with the Door Merge modules:
+*----------------------------------------------------------*
+
+I'll give several examples on how to interface your program with
+the Door Merge files so you can make a working Door program.
+
+The first line of your program should be this:
+
+1 ' $INCLUDE: 'DMERG1.BAS'
+
+This 'Includes' Doormerge file 1 which does initialiation for the Door
+program. The next line number should be 9 & 10 (or so)  this makes sure
+that there is room for the Dmerg1 file. Most of my programs have a line
+'9' & '10' that look like this:
+
+9  DOOR.NAME$ = "DOORNAME"                'This is used in the ERR routine
+                                          'and it will be the program name
+                                          'displayed on Line 25.
+
+and the line after that:
+
+12 ON.AT$ = TIME$:IF (SNOOP OR L.OCAL = 1) THEN GOSUB LINE25 
+
+15 ' Line 12 gets the time user logged onto game (ON.AT$) and saves it
+   ' Then if SNOOP is 'on' (in the RBBS) it will write the info on line 25
+
+Your line 25 will look something like this:
+
+DOORUSER NAME                   DOORNAME               Node: 1    10:25:00
+
+So, let me recap this first part.  The beginning of a program would look
+something like this:  (I'll use Tradewars as an example)
+
+1 ' $INCLUDE: 'DMERG1.BAS'
+10 ' **/ Trade Wars, by Chris Sherrick  (PTL)  6/86 /**  Copyright 1986 Chris Sherrick
+11 ' **/ Modified for use with RBBS by John Morris (Reno RBBS 702-673-3387)
+   DOOR.NAME$ = "TW200"
+13 ON.AT$ = TIME$:IF (SNOOP OR  L.OCAL = 1) THEN GOSUB LINE25 
+15 'Tradewars program starts here:
+
+
+Now for the other goodies:
+
+I'll give some regular BASIC commands and their equivalent Doormerge commands:
+
+Input a string to program (from Local and/or Remote):
+
+Basic Command:
+INPUT "What is your next command",ARG$
+
+Equivalent Doormerge Command:
+LN$="What is your next command? ":NORET=1:GOSUB OUT.PUT:GOSUB IN.PUT
+
+'NORET=1 makes sure the line is printed without a carriage return/line feed
+'Note: NORET is returned to '0' after the line is printed, so you'll need
+'to use NORET=1 whenever you want a line printed without a carriage return/line feed
+'GOSUB OUT.PUT prints the line
+'GOSUB IN.PUT gets input from user in the form of ARG$
+
+
+Output a string (to Local and/or Remote)
+
+Basic Command:
+PRINT "You have just entered an unmapped sector!"
+
+Equivalent Doormerge Command:
+LN$="You have just entered an unmapped sector!":GOSUB OUT.PUT
+
+'Again you can use NORET=1 if you need to print a line without a
+'carriage return/line feed
+
+01-01-87
+ Late breaking news.  new function:  UPLOW  if set to 1 (UPLOW=1)
+all input into door program will be set to capitol letters. Your
+Door program should turn UPLOW on and off as needed.
+
+Thats really all there is to it! The Doormerge modules take care of the 
+rest (Error logging, Function keys, Time checking, Etc.).
+
+02-16-87
+ More news!  Doorsoft games will now accept stacked commands   ie:
+ M;4;M;3;P
+ That is a Tradewars 200 example. Those caommand printed would move a user
+ to sector 3 and then 'port'.
+ Also Doorsoft game will also run without the Door Monitor.  This will be
+ somewhat useless for Gambling games (Monte, Poker, 21 etc.) But will allow
+ for a separate TW200 Door.  Because it is a somewhat useless function for
+ gambling type games, the 'no-monitor' mode will be archaic (for the time
+ being)  It will give the user 45 minutes of time per game. (it is hard
+ coded that way.. but since the source code is available, things are still
+ pretty flexible)
+ The Doorsoft games also feature error checking in the modules, and if
+ an error occurs it will give a somewhat verbose reply telling you the
+ problem.
+
+06-28-87
+ As of the newest version of Tradewars 2, two special Doormerge files
+ will be included: twmerg1 and twmerg2.bas  these are the equivalent of
+ the dmerg1.bas and dmerg2.bas files.  The reason for the change is in
+ the reduction of the main code segment size of tw2.bas. Also ANSI
+ graphics are available in the doormerge files. All you need to do is
+ tell the doormerge files the color you want:  ie:   you need to insert
+ and FC = x  (forefround)   BC = x  (background) in the code before the
+ output call.  Check the New Tradewars Source code for more examples.
+
+Having Problems still?  Contact me at the above number.
+
+                                John Morris
+
+
+
+

@@ -1,0 +1,64 @@
+ '/** TWMerge1 (c) 1986-87 John Morris  file:1  Initialization routines
+ '    08/14/87  v.1     RBBS-PC 15.1B comp.   * TW 2 specific *
+
+  '$INCLUDE: 'TWVAR.BAS'
+
+  DEF FNTI! = CSNG(FIX((VAL(MID$(TIME$,1,2))*60*60) + _
+              (VAL(MID$(TIME$,4,2))*60)+(VAL(MID$(TIME$,7,2))*1)))
+  RANDOMIZE TIMER
+  KEY(8) ON
+  KEY(9) ON
+  KEY(10) ON
+  ON KEY(8) GOSUB Forceoff
+  ON KEY(9) GOSUB Snoop
+  ON KEY(10) GOSUB Chatter
+  FALSE = 0
+  TRUE = NOT FALSE
+  ON ERROR GOTO Err.routine
+  CALL GET.TW2.DAT(FIL$,LOG.OFF$,ALIAS,NM.TIME)
+  CALL ANSI.COL
+  CALL Read.command
+  CALL Read.def(SYSOP.FIRST$,SYSOP.LAST$,MESSAGE.FILE$,COM.PORT$,RBBS.NAME$,MCR,MSR)
+2 OPEN "R",1,MESSAGE.FILE$
+  FIELD 1,128 AS Z$
+	GET 1,NODE
+	BP$ = MID$(Z$,60,4)
+	GRP = VAL(MID$(Z$,53,2))
+	PAR = VAL(MID$(Z$,42,2))
+	SNOOP = VAL(MID$(Z$,58,2))
+3   DOOR.USERS.NAME$ = MID$(Z$,1,31)
+	FIRST.NAME.END = INSTR(DOOR.USERS.NAME$," ")
+	LAST.NAME.END = INSTR(FIRST.NAME.END + 1,DOOR.USERS.NAME$ + " ","  ")
+	FIRST$ = LEFT$(DOOR.USERS.NAME$,FIRST.NAME.END-1)
+	LAST$ = MID$(DOOR.USERS.NAME$,FIRST.NAME.END + 1,LAST.NAME.END-(FIRST.NAME.END + 1))
+	USER.NAME$ = FIRST$ + " " + LAST$
+  I = 0
+  LFEED = 1
+  IF PAR = -1 THEN
+	 PAR$ = ",N,8,1,CS,DS,CD"
+  ELSE PAR$ = ",E,7,1,CS,DS,CD"
+  END IF
+  CLOSE 1
+  SYS.OP = 0
+  TIME.SAVE = 5
+  CR$ = CHR$(13)
+  LF$ = CHR$(10)
+  CS$ = CHR$(12)
+  BK.ARW$ = CHR$(29) + " " + CHR$(29)
+  BACK.SP$ = CHR$(8) + " " + CHR$(8)
+  COLOR.RESET$ = CHR$(27) + "[00;37;40m"
+  COLOR.NORMAL$ = CHR$(27) + "[0m"
+  L.OCAL = 0
+  IF FIRST$ = "SYSOP" THEN _
+	 GOSUB Sysop.name
+  IF COM.PORT$ = "COM0" THEN
+	 PRINT "LOCAL WORKSTATION MODE"
+	 FOR SL = 1 TO 2000
+	 NEXT SL
+	 L.OCAL = 1
+  END IF
+  IF L.OCAL <> 1 THEN
+	 OPEN COM.PORT$ + ":" + BP$ + PAR$ AS #3
+  END IF
+  GOSUB INDOOR
+

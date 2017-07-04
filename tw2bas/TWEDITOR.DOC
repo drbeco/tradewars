@@ -1,0 +1,513 @@
+                     TRADE WARS EDITOR INSTRUCTIONS
+                     ==============================
+                        by Chris Sherrick (PTL)
+
+     Welcome to the Trade Wars (v.ii) editor.  The TW200 editor is divided 
+into sub programs which I'll handle section by section. When running the 
+program, don't be too worried about ruining the database, you can drop
+carrier on from remote while editing and nothing will happen to hurt the
+data base. The editor is pretty much self explanatory, and anytime there 
+is something confusing, I've added a help command ("Enter ? for help".)  
+The exception to this is the message editor, which can be confusing but 
+really don't expect you to be playing around with it anyway.   
+ Also, all numbers Trade Wars handles are integers, so don't enter any 
+noninteger values for numbers (from -32000 to 32000 approx.) 
+Even credits are an integer and if a player accumulates over 25000 credits,
+he will be taxed 5000 when he logs into the game.
+
+                     LOGIN AND MESSAGES TO TW SYSOP
+                     ==============================
+     When in local mode, no password is required to get into the editor,
+but when not in local mode, a password is required. You define this password
+when TWINIT2 is run, and note that upper case is different than lower case.
+Once you're in, the computer will give a list of messages to the TW sysop. 
+It will tell who logged on, who they killed, whether or not they made
+or destroyed a planet, and the maintenance and Cabal report.  Don't panic
+when you see that someone else ran the maintenance program.  TW200 will
+automatically run the maintenance program (TWMAINT) the first time someone
+logs on to TW200 for the first time of that day. So when you see that someone
+else ran TWMAINT, don't worry about it, everything is normal.  Another
+thing the maintenance program does is give a Cabal report.  This will
+simply tell you what the Cabal did, but the messages are a little cryptic. 
+Here is a decipher for the Cabal report:
+
+   -->     = Attacked
+   Sctr    = Sector
+   ftrs    = Fighters
+   Plyr    = Player/Player's
+   Cabal   = Cabal
+   dstrd   = Destroyed
+   Grp     = Group
+
+An example of a message is:
+   Grp 2 --> Sctr 10(Joe Cuel): lost 20, dstrd 25 (Cabal ftrs dstrd)
+which means Cabal group 2 attacked the fighters in sector 10 (who belong
+to Joe Cuel).  The Cabal lost 20 fighters but destroyed 25 of Joe Cuel's
+fighters.  All the Cabal fighters were lost.
+
+Another example is:
+   Grp 9 --> Joe Cuel: lost 45, dstrd 34 (Plyr dstrd)
+which means that Cabal group 9 attack Joe Cuel's ship.  The Cabal lost
+45 fighters, but destroyed 34 of Joe Cuel's fighters.  His ship was destroyed.
+
+I hope you follow this, it was meant to take up little room in the list
+of messages to the sysop.  Also, the messages to the sysop can be turned
+off so that no messages will be written.  Look under the General editor
+for this.
+
+
+                        TWEDIT EDITORS
+                        ==============
+
+     The following is a summary of editors for TWEDIT:
+
+A - Team Editor          - Edits Team info
+U - User Editor          - Edits players players' ships.
+S - Sector Editor        - Edits the contents of a sector.
+P - Port Editor          - Edits the prices and values of a port.
+G - General Editor       - Edits general information.
+R - Report               - Gives a report of players and occupied sectors.
+C - Cabal editor         - Edits information about the Cabal
+D - Daily message editor - Edits the who-killed-your-fighters messages
+R - Radio message editor - Edits messages to-from users
+P - Planet editor        - Edits the planets
+
+
+
+						 A - TEAM EDITOR
+
+	 This command allows you to edit Team info.  You will be asked which Team
+you wish to edit, or choose L to list the available Teams.  You can edit one
+of three fields.   The first field is a toggle, it toggles the Teams active/
+inactive state. Second is the Team password. This is a four character password.
+Please note: UPPER case and lower case are different here!  Lastly, you can
+edit the number of players currently on that Team. PLEASE be careful when
+editing any of these fields, as there isn't much error checking at this time.
+
+                         U - USER EDITOR
+
+     This editor allows you to edit the information about a person.  The
+first thing it will do is ask you for a search string or a player number. 
+For the search string, the editor recognizes differences between upper
+and lower case.  If you wanted to find "Joe Cuel", "joe" would not find
+him, but "Joe" would.  As for the user number, each player is assigned
+a number from 2 to how many people are playing.  The record for player
+1 is used for general information, not as a person, so you will never
+have a player number 1.  If you want to return to the main menu (of TWEDIT),
+just press ENTER.
+     Once you've got a person, it will then list the information about
+him, along with what can be changed.  Here is a list of what is printed
+and what can be changed:
+
+A - Name.
+     You can change a person's name, but not his new number.  Keep in
+mind that a person's name is adjusted when someone logs in to TW2.  The
+adjusting routine will change every letter following a nonletter to a
+capital.  Here is some examples of what it will do to a name: "Joe Cuel",
+"Ronald Macdonald", "Glort From Org Xxx-Yyy!."  Make sure that if you
+change the name, the computer will recognize who it is.  Names are limited
+to 41 characters in length.
+
+B - Last day on
+     This will display the last time the player was on Trade Wars.  This
+can be adjusted so that a player won't be allowed on for several days. 
+If you don't want him or her on for another 7 days (banished for a week),
+enter -7 and the game won't let that person on for another seven days
+from the day you changed the value.  If you make this a positive value,
+it will interpret it as how many days ago the person was on.  A "0" means
+that person was on today.  A "1" means he was on yesterday.  A "244" means
+the last time he was on was 244 days ago.
+
+C - Who killed them
+     This will tell you who killed that person.  If it's a "<none>" then
+they're still alive.  When changing the value, enter the person's name
+or search string, as when starting this editor.  However, the search string
+won't find the Cabal, or a deleted player.  Enter a -1 for the Cabal,
+and a -98 for a player who has been deleted (because he hasn't called
+for a while, etc.)  If you want to have their ship initialized, enter
+a -99.  Note that a -99 will have a different effect on the last day on. 
+If the last day on is negative (banished from the board,) it won't let
+that person on until that day comes, then they will be reinitialized.
+
+D - Turns left
+     This is simply the turns they have left on the last day they were
+on.  If they weren't on today, it will be reset to the number of turns
+allotted per day, unless this value is greater then the number of turns
+allotted per day.  If this number is greater, it will take the greater
+number rather then lower (the amount of turns allowed per day)  e.g. If
+it was set to 500, that person would have 500 turns the next time they
+called, regardless of how many days ago they called.
+
+E - Location
+     This is the sector they are in.  If it is set to a zero, they will
+be taken out of the game and "hidden" until they call up.  When they call
+in, they will be moved to sector 1.
+
+F - Fighters
+     This is how many fighters they have.  There is a 9999 limit.
+
+G - Total cargo holds
+     This is how many cargo holds a person has, used and unused.  If you
+adjust this, make sure that it is not less that the cargo holds filled
+with ore, org and equipment.  If it is, it will give you a warning.
+
+H - J Ore, Org, and Eqp
+     This is how many of the cargo holds are filled with ore, organics
+and equipment.
+
+K - Credits
+     This is simply how many credits they have.  Note that this is an
+integer (less than 32000) and if they are over 25000, they will be taxed
+when they log on.
+
+L - Last room in.
+     This is the last room the player was in and is only used in a retreat. 
+If it is zero, the game will pick a random direction and retreat that
+way.
+
+! - Delete player
+     This will delete the player FROM THE GAME, not just destroy the ship. 
+If you want to destroy the ship, use the B command.
+
+Adding a new person
+     If you want to add a new person, there is three things you have to
+change: A - name, B - last day on, set to 0 (so they won't be automatically
+deleted), and C - killed by, set to -99.  However It is much easier to
+let them log on and let the game initialize them.
+
+
+                        S - SECTOR EDITOR
+
+     This editor will allow you to edit some of the information in a sector.
+It will ask for the sector number, then allow you to edit the information
+for that sector.  If you want to return to the  TWEDIT main menu, just
+press ENTER.
+
+A - F - Warps lead to
+     This allows you to change what sectors the warps lead to.  I recommend
+leaving this alone.  If you change a warp, it won't change it for the
+other sector, e.g.  If you change sector 1 to warp to sector 77, it won't
+automatically change 77 to go to sector 1.  If you insist on changing
+the map, it will be a lot of work.  But if you do, make sure you leave
+sector 85 and 83 together.  The Cabal moving routine assumes these are
+next to each other, and will create problems if they're not.  Also, sector
+85 is the the Cabal HQ, and a player gets 100,000 points for invading
+it.
+
+G - Port in sector
+     This allows you to add or delete a port that is in the sector.  If
+you want to move a port, you have to delete it from one sector and add
+it to another sector.  It will ask for a search string or a port number. 
+The search string is just like the player search string (see the User
+editor)
+
+H - Fighters in the sector
+     This allows you to change the fighters in a sector, and who they
+belong to.  This is pretty self explanatory.  When it asks for the player
+number, enter a -1 if you want the Cabal in a sector.  But it's not a
+good idea to move the Cabal from this editor, since TW will no longer
+recognize them as a group.  Move them from the Cabal editor.  You can
+change the Cabal group size with out bothering the groups though.
+
+People in sector
+     This will display the people in this sector.  If you want to change
+these, you have to use the user editor.
+
+Planet in sector
+     This will be displayed if there is a planet in the sector.  If you
+want to change this, you have to use the planet editor in TWEDITA.
+
+I - Shortest path
+     This will give you the shortest route from one sector to another. 
+It is just like the sector finder, only you get to specify both sectors.
+
+
+                           P - PORT EDITOR
+
+     This will ask you for the port number or search string, and answering
+this question works just like the user editor.  Just press ENTER to return
+to the TWEDIT main menu.
+
+A - Name
+     This will allow you to change the name of a port.  You are limited
+to 41 characters.
+
+B - Class
+     Class is not used for anything but show.  You could set the class
+to -999 and it wouldn't affect a thing, except the class reading.  For
+convention, keep this accurate.
+
+C - E - Quantity of ore and prices
+     This will display how much ore they have, and what the fair price
+is (used when bargaining.)
+
+F - Productivity
+     This is how many units get produced every 24 hours.  I do not recommend
+changing this value.  When the ports produce they produce smoothly over
+the 24 hour period, figuring quantities by the minute.  If the productivity
+was set to 24, it would produce one item every hour.  The ports stop producing
+merchandise when they are at ten times their daily amount.
+
+G - Max change in cost
+     This, in other words, is how much of a deal the player gets.  It
+is at max cost, so if this was set to 50%, when it has ten days merchandise,
+they would sell around 50% of the cost.  With 5 days of merchandise, it
+would be around 25 percent the cost.  It is a linear function of cost
+vs. how much they have or need, and looks like the following graph:
+
+             Port selling                        Port buying
+
+    (Price) ^                             Price ^
+            |                            Sp*Mp  |
+         Sp-o                       Sp + ----- -+   o       
+            |o                            100   |  o           
+            | o <- Curve                        | o <- Curve
+     Sp*Mp  |  o                                |o                 
+Sp - ----- -+   o                            Sp-o               
+      100   |                                   |             
+            +---|------>(Number                 +---|--------> (Number
+           0   d*10      of units)             0   d*10         of units)
+
+            Mc = Maximum change in cost (in percent)
+            Sp = Standard Price (Ore=10, Org=20, Eqp=35)
+            d  = The daily production rate
+
+The above is a graph of what is considered a fair price per unit vs the
+number of units being sold.  If you don't follow them, don't worry; it
+take an economics course to really understand it well (supply and demand
+curves)
+
+
+                       G - GENERAL EDITOR
+
+     This allows you to edit general information about Trade Wars, and
+you will probably find this section the most interesting.  You should
+go through and check this before you set up Trade Wars to run on your
+BBS.
+
+A - Change the editor password
+     The first thing you have to do is remember the old editor password,
+because it will ask for it before you change it.  Once you've entered
+the old password, it will ask for the new password.  If you forgot it,
+load in the ascii version of TWEDIT into basic and type the following
+(at the basic prompt):
+FS$ = "TWDATA.DAT
+GOSUB 2000
+GET 1,1
+PRINT LEFT$(FA$,CVI(FB$))
+CLOSE
+and it will print your password for you.  This is doing it the hard way.
+
+B - Turns per day
+     This is how many turns people are allowed on per day.  I recommend
+45 to 50 for TW200.
+
+C - Initial fighters
+     This is how many fighters a person gets when their ship is being
+reinitialized.
+
+D - Initial credits
+     This is how many credits they get when their ship is reinitialized.
+
+E - Initial cargo holds
+     The same thing as above, only with cargo holds.
+
+F - Days until an inactive player is deleted.
+     Trade Wars will go through and delete old players who have been killed
+after this many days of inactivity.  Note that it will keep alive players
+still alive until they get killed, no matter how long they haven't been
+on the game.  If they have 700 fighters, they should be allowed to at
+least survive until someone kills them.  The maintenance program deletes
+the inactive players and totally removes them from the game.
+
+G - Last day maintenance ran
+     The maintenance program is run every day when the first person for
+that day calls on.  If it has not been run today, it will run when the
+next person plays TW2.  This should only be run once per day, as the Cabal
+regenerate and move every time the maintenance program is run.  To change
+this, enter how many days ago the maintenance program was run.  e.g. for
+today, enter a 0; for yesterday, enter a 1; for 233 days ago, enter a
+233.  All that will matter if it was run today or not, so 1 and 223 will
+have no difference as far as effecting the program.
+
+H - Cabal regeneration
+     This value effects how fast the Cabal regenerate.  I recommend 50. 
+That will give the players a challenge, but they are still (barely) con-
+querable.  Also, if you want to lower the top players, jack this up to
+100 or 200 and the number one player will get picked on more often (see
+the Cabal editor - Group 9.)  If someone is going against the Cabal, and
+you want them to win, lower this to 10,20,30 or even 0, and it will give
+them a good chance.  Just don't abuse this - players should be able to
+wipe out the Cabal... It is the test of a good TW2 player.
+
+I - Messages to TW sysop
+     By turning this off, TWMAINT and TW2 won't add to the list of messages
+to the sysop.   If you don't want to periodically check into the editor
+and delete the message to sysop list, turn this is off, and you won't
+have to worry about TW2.  It will run on its own without supervision.
+
+
+                           R - REPORT
+
+     This will give a report of players, and all occupied sectors.  It
+will rank the players and print from the strongest player to the weakest
+player in a table format>  Here is the meanings of the symbols:
+
+#    - The player number.
+Name - The player's name.
+Day  - How many days ago the player was on.
+KB   - Killed By, what player number killed that person.  A blank means
+       no one killed him or her.  A -1 means the Cabal
+Trn  - How many turns they have left on their last day on.
+Loc  - Location, what sector number they're in.
+Crdts- How many credits they have.
+Ftrs - How many fighters they have.
+CH   - How many cargo holds they have (total).
+Ore  - The amount of cargo holds containing ore.
+Org  - The amount of cargo holds containing organics.
+Eqp  - The amount of cargo holds containing equipment.
+
+Sr   - The sector number.
+Cl   - The class of a port in that sector.  A blank means no port there.
+Ftrs - How many dropped fighters are in the sector.
+Who  - Who dropped the fighters (player number and name).
+
+
+
+                         C - CABAL EDITOR
+
+     The Cabal editor allows you to edit general information about the
+Cabal, such as group size, destinations, etc.  But before, you should
+understand what each of the 9 groups of Cabal operate.
+
+GROUPS 1-2 (Defense)
+     All they do is defend.  Group 1 defends sector 85 with 1000 fighters,
+and group 2 defends sector 83 with 500 fighters.  If group 1 is lowered
+in fighters, they will be replaced with fighters from group 2.  In other
+words, group 1 has priority over group 2.
+
+GROUPS 3-5 (Wandering)
+     These three groups pick a spot and head for it one sector per day. 
+When they get there, they pick another "goal" and aim for it.  They start
+at 100 fighters, and if the group size is under 50 or over 100, it will
+make its new goal sector 85 and head to it so it can merge with the fighters
+(see below)  If they enter any sectors containing a player's fighters,
+they will fight until either the player's or the Cabal fighters are destroyed.
+
+GROUPS 6-8 (Attack)
+     These groups pick a spot and head straight for it, but they move
+through every sector to get there in one day.  Like the wandering group,
+they will destroy all fighters dropped in a sector (or be destroyed.) 
+Also if they stumble across a person they will waste 20 fighters on that
+person, just to be mean.  If they are over 50 or under 20, they will head
+back to sector 85 and be merged.
+
+GROUPS 9 (Attack highest player)
+     This group will head straight for the top player (taking out dropped
+fighters as normal) and spend all of its fighters on the number one player,
+providing that he/she is worth over 21000 credits (around 100 fighters.) 
+This is made to keep control an annoy the best player.
+
+FORMING AND MERGING GROUPS
+     Groups are formed from any extra fighters left over in sector 83
+in group 2.  When two groups stumble across each other, the higher number
+group will merge into the lower number group.  If group 7 with 50 fighters
+comes across group 4 with 100 fighters, group 7 will be destroyed and
+group 4 will have 150 fighters (and subsequently head back to sector 85). 
+When group 4, 150 fighters, stumbles across group 2, 500 fighters, in
+sector 83 (group 4 was heading for 85 remember?) group 4 will cease to
+exist and group 2 will have 650 fighters.  The 150 extra (donated from
+group 4) will be used to create other groups.
+
+USING THE CABAL EDITOR
+     After displaying which groups exist, it will ask for the group number
+you want to edit.  Enter any of the group numbers.  Then it will ask you
+for then Location and size of the group.  If you are editing groups 3
+through 5, it will ask you for a goal.  Press enter to leave these the
+same.  If you want to see a path the Cabal will go to get to somewhere
+(as in groups 3 - 5) use the sector editor, shortest distance command.
+
+
+                   THE MESSAGE DAILY EDITOR
+
+     This is the most confusing, user hostile program of the whole package. 
+I don't plan on having you use this, so I wrote it very quickly an sloppily.
+
+A - List messages with numbers
+     This will give a list of messages in number form.  Here is what each
+number stands for:
+
+Mesg # - The message number
+Who to - What player number the message is address to
+Type   - 0 = deleted, 1 = player destroyed your fighters
+Var A  - Who attacked that person
+Var B  - The number of fighters destroyed
+
+B - List messages with test
+     Will display the above messages with names instead of numbers.  More
+legible.
+
+C - Edit a message
+     This will let you edit a message, given the number. The consequences
+     are not good (but may be rather interesting - errors!) if you drop
+     carrier in this part of the editor.
+     This is self explanatory
+
+D - Add a message
+     This will add a null message, a deleted message, at the end of the
+message list.  If you want to do anything with it, you will have to C
+- Edit a message.
+
+					  M - RADIO MESSAGE EDITOR
+
+	 Like the Daily message editor, this routine is quite user hostile.
+Once you pick the M command you will be given a starting list of messages
+that you can edit.  They will displayed in the following form:
+
+  8 0 24 50 Got a guilty conscience or something?
+
+Which is equal to:
+
+ Msg#  Active?  From  To  Message
+
+You then will enter the message to edit. The you are then given info on the
+Message, and asked if it is the correct one.  If you reply with a Y you will
+then be prompted through each of the message fields. First, you are asked
+whether the message should be active or not. Next you will be asked who the
+message is TO. You must know the number of the user to change this info.
+After that, you will be asked who the message is from. Last but not least,
+you will be asked to input a new message (in any).  Please note:  using
+[ENTER] will mean  No change, or end.
+
+
+                          PLANET EDITOR
+
+     This will allow you to edit the information about the planets.
+The first thing it will do is ask you for the search string, planet number,
+or sector the planet is in.  The search string and number act just like
+the user editor.  If you want to enter the sector number the planet is
+in, put a "/" before the number, e.g. "/45" means the planet in sector
+45.
+
+A - Name and number
+     This will display the planet's name and number.  You can change the
+name, but you are limited to 41 chars. max.
+
+B - D - Ore, Org, Eqp
+     This allows you to edit how much ore, organics, or equipment the
+planet has to give away.  Good values are between 1 to 10 times the prod-
+uctivity.
+  
+E - G - Productivity of ore, org, eqp
+     This value is the productivity of the ore, organics and equipment. 
+For an explanation of productivity, look under the port editor.  Good
+values are limited from 1 to 3000.
+
+! - Delete/Create (and move) a planet
+     This command will delete a planet if the planet exists by deleting
+the name and removing it from the sector it is in.  All other information
+will be saved (productivity, etc.)  If the planet doesn't exist, it will
+create a planet by asking for its name and location.  Once again, the
+name is limited to 41 chars.   If you want to move a planet, you have
+to delete it, then re-create it in the sector you want.  All the merchandise
+info will be saved from deletion to creation.
