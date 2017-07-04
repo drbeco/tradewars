@@ -1,6 +1,41 @@
-== Author ==
+== TradeWars II, original in BASIC ==
 
-Prof. Dr. Ruben Carlo Benante
-github: @drbeco
-email: rcb@beco.cc
+#### A little history on the original version and their authors:
+
+* Chris Sherrick, original author, created Tradewars I (or just Tradewars) in BASIC for TRS-80, 1984.
+    - According to Chris, his game was a cross between Dave Kaufman's BASIC program "Star Trader" 1974, the board game "Risk" (Lamorisse, Hasbro, 1957), and Gregory Yob's "Hunt the Wumpus" 1972.
+    - Chris developed Tradewars 1 (with 60 sectors) and Tradewars 2 (1985, with 99 sectors).
+* John Morris got the BASIC code from Chris and developed some enhancements (1986) and released TW200 and TW500 (the numbers indicating the maximum sectors)
+* This repository fork from here, from TradeWars II BASIC, to port it to C. But the history is far from the end. Actually, it is a very rich history that has just started...
+* Chris and John developed the BASIC version of TradeWars III (Microsoft QuickBasic 3.0)
+* The code of TW3 is ported from BASIC to PASCAL by some BBS sysops (Lord Darkseid, Sorcerer Alex, Supreme Dalek, The Omega Man, Preston Stroud, Quixotic Software and John Morris), with lots of features added in July, 1987. They mistakenly call it TradeWars II QP version, but it was indeed TW III what they ported.
+* From this point forward the history of the game goes on with many versions. If you are interested in know the whole timeline I suggest the links:
+    - http://wiki.classictw.com/index.php?title=Inside_TradeWars_-_History_-_Timeline
+    - http://www.bbsdocumentary.com/library/PROGRAMS/DOORS/TRADEWARS/tradewars.html
+    - https://en.wikipedia.org/wiki/Trade_Wars
+* There are other attempts to port TradeWars III from PASCAL to C (see for example neozeed2 and eryndil on sourceforge).
+
+It is a great honor to distribute the original for TradeWars 2 in BASIC. This rare files have earned their places in any computer museum for posterity.
+
+They are available in this repository a release (or tag) TW2BAS as the first commit of this port to C, and it is in its own folder also, so it is easly found.
+
+Enjoy!
+
+== C code port ==
+
+It is the intention of this repository to allow current linux systems to play the old game TW II. 
+
+The first task is a simple port from BASIC to C of the original TradeWars II, which will have a release (with a tag associated), and from there to evolve the game to unchatered waters. It is not the intetion to run it via telnet at first, but to allow local players to play against each other.
+
+At the end, this will become a simulator to teach C and intelligent agents programming.
+
+We can then follow to implement some (or all) of the features from TradeWars III (aka TW II/QP PASCAL version), or/and create our own set of new rules, or even allow telnet if fancied.
+
+This repository and the new versions of the program (in C) that here appears are ported, created and mantained by:
+
+* Prof. Dr. Ruben Carlo Benante
+* github: @drbeco
+* email: rcb@beco.cc
+
+and students envolved in it.
 
