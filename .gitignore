@@ -32,3 +32,9 @@
 *.dSYM/
 *.orig
 
+# Original files
+*.BAS
+*.DOC
+*.BAT
+*.DAT
+
